@@ -68,7 +68,7 @@ function SimpleSpline:FollowPath(Objects: {} | BasePart | Model | Camera, Speed:
 	local Connection
 	local Elasped = 0
 	local Prev = 0
-	Run = RunService:IsClient() and RunService.RenderStepped or RunService.Heartbeat
+	Run = RunService.Heartbeat
 	local Finished = false
 
 	local Loop = self.CurrentOptions.Loop
