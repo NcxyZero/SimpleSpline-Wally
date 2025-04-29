@@ -1,0 +1,7 @@
+[package]
+name = "ncxyzero/SimpleSpline-Wally"
+version = "1.0.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+description = "SimpleSpline by Mewious"
+license = "MIT"

@@ -2,6 +2,8 @@
 
 ## How to use
 
+This is fork so I can add it to wally, here is original https://github.com/Mewious/SimpleSpline
+
 Create a new spline:
 ```lua
 local Points = {}
