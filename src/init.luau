@@ -18,6 +18,7 @@ type Path = {
 	Stop: () -> nil,
 	ChangeSpeed: (Speed: number) -> nil,
 	GetElapsed: () -> number,
+	SetSpeedMultiplier: (NewSpeedMultiplier: number) -> (),
 }
 
 local DefaultOptions: Options = {
@@ -61,6 +62,7 @@ end
 function SimpleSpline:FollowPath(Objects: {} | BasePart | Model | Camera, Speed: number, DistanceBetweenObjects: number)
 	local Length = self.Length
 
+	local SpeedMultiplier = 1
 	local Completed = Instance.new("BindableEvent")
 	local PathCompleted = Instance.new("BindableEvent")
 	local Time = Length / Speed
@@ -124,9 +126,9 @@ function SimpleSpline:FollowPath(Objects: {} | BasePart | Model | Camera, Speed:
 
 	Connection = Run:Connect(function(dt)
 		if Reverse then
-			Elasped -= dt / Time
+			Elasped -= (dt * SpeedMultiplier) / Time
 		else
-			Elasped += dt
+			Elasped += (dt * SpeedMultiplier) 
 		end
 
 		if type(Objects) == "table" then
@@ -225,6 +227,10 @@ function SimpleSpline:FollowPath(Objects: {} | BasePart | Model | Camera, Speed:
 		end,
 		GetElapsed = function()
 			return GetElapsed(0)
+		end,
+
+		SetSpeedMultiplier = function(NewSpeedMultiplier: number)
+			SpeedMultiplier = NewSpeedMultiplier
 		end,
 	} :: Path
 
